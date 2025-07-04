@@ -1,0 +1,126 @@
+.petparentregister-page-box {
+  background: #A90A40;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.petparentregister-role-toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 0.5rem;
+}
+
+.petparentregister-role-btn {
+  flex: 1;
+  padding: 0.75rem 0;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  background: #fff;
+  border: 1.5px solid #eee;
+  color: #222;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: border 0.2s, color 0.2s, background 0.2s;
+}
+
+.petparentregister-role-active {
+  border: 1.5px solid #ff9800;
+  color: #ff9800;
+  background: #f9f6f2;
+  opacity: 1;
+  font-weight: 600;
+}
+
+.petparentregister-role-inactive {
+  background: #fff;
+  color: #222;
+  border: 1.5px solid #eee;
+}
+
+.petparentregister-role-desc {
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+}
+
+.petparentregister-role-active .petparentregister-role-desc {
+  color: #ff9800;
+}
+
+.petparentregister-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 0.5rem;
+}
+
+.petparentregister-field {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.petparentregister-field label {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.petparentregister-field input[type="text"],
+.petparentregister-field input[type="email"],
+.petparentregister-field input[type="password"] {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1.5px solid #e0e0e0;
+  font-size: 15px;
+  outline: none;
+  background: #fafbfc;
+  margin-bottom: 0;
+  transition: border 0.2s;
+}
+
+.petparentregister-field input[type="text"]:focus,
+.petparentregister-field input[type="email"]:focus,
+.petparentregister-field input[type="password"]:focus {
+  border: 1.5px solid #ff9800;
+}
+
+.petparentregister-field input[type="file"] {
+  padding: 0.3rem 0;
+  border: none;
+  background: none;
+}
+
+.petparentregister-submit-btn {
+  margin-top: 12px;
+  background: linear-gradient(90deg, #ff9800 0%, #ff6d00 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 0;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.08);
+  transition: background 0.2s;
+}
+
+.petparentregister-submit-btn:hover {
+  background: linear-gradient(90deg, #ff6d00 0%, #ff9800 100%);
+}
+
+.petparentregister-message {
+  margin-top: 1rem;
+  color: #ff9800;
+  font-weight: 500;
+  font-size: 1rem;
+} 
