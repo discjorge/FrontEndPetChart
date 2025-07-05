@@ -1,63 +1,18 @@
 .vetregister-page-box {
-  background: #FF9500;
+  background: linear-gradient(10deg, #FF9500 0%, #FF6B35 100%);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 420px;
+  max-width: 620px;
   margin: 2rem auto;
   text-align: center;
-}
-
-.vetregister-role-toggle {
-  display: flex;
-  align-items: center;
-  margin-bottom: 24px;
-  gap: 0.5rem;
-}
-
-.vetregister-role-btn {
-  flex: 1;
-  padding: 0.75rem 0;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 1rem;
-  background: #fff;
-  border: 1.5px solid #eee;
-  color: #222;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: border 0.2s, color 0.2s, background 0.2s;
-}
-
-.vetregister-role-active {
-  border: 1.5px solid #ff9800;
-  color: #ff9800;
-  background: #f9f6f2;
-  opacity: 1;
-  font-weight: 600;
-}
-
-.vetregister-role-inactive {
-  background: #fff;
-  color: #222;
-  border: 1.5px solid #eee;
-}
-
-.vetregister-role-desc {
-  font-size: 12px;
-  color: #888;
-  font-weight: 400;
-}
-
-.vetregister-role-active .vetregister-role-desc {
-  color: #ff9800;
 }
 
 .vetregister-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   margin-top: 0.5rem;
 }
 
@@ -88,11 +43,6 @@
   transition: border 0.2s;
 }
 
-.vetregister-field input[type="text"]:focus,
-.vetregister-field input[type="email"]:focus,
-.vetregister-field input[type="password"]:focus {
-  border: 1.5px solid #ff9800;
-}
 
 .vetregister-field input[type="file"] {
   padding: 0.3rem 0;
@@ -104,7 +54,7 @@
   margin-top: 12px;
   background: linear-gradient(90deg, #ff9800 0%, #ff6d00 100%);
   color: #fff;
-  border: none;
+  border: 1.5px solid #fff;
   border-radius: 8px;
   padding: 0.9rem 0;
   font-weight: 600;

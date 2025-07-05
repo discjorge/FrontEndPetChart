@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
-import VetRegister from './VetRegister';
 import PetParentRegister from './PetParentRegister';
+import VetRegister from './VetRegister';
+import '../styles/Register.css';
 
 export default function Register() {
-  const [userType, setUserType] = useState('petparent'); // 'petparent' or 'vet'
+  const [userType, setUserType] = useState('petparent');
 
   return (
-    <div className="page-box">
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 24 }}>
+    <div className="register-page-container">
+      <div className="register-toggle-row">
         <button
           type="button"
-          className={userType === 'petparent' ? 'vetregister-role-btn vetregister-role-active' : 'vetregister-role-btn vetregister-role-inactive'}
+          className={`register-toggle-btn ${userType === 'petparent' ? 'active' : ''}`}
           onClick={() => setUserType('petparent')}
         >
           Pet Parent
-          <div className="vetregister-role-desc">I want to track my pet's health</div>
+          <div className="register-toggle-desc">I want to track my pet's health</div>
         </button>
         <button
           type="button"
-          className={userType === 'vet' ? 'vetregister-role-btn vetregister-role-active' : 'vetregister-role-btn vetregister-role-inactive'}
+          className={`register-toggle-btn ${userType === 'vet' ? 'active' : ''}`}
           onClick={() => setUserType('vet')}
         >
           Veterinarian
-          <div className="vetregister-role-desc">I provide veterinary care</div>
+          <div className="register-toggle-desc">I provide veterinary care</div>
         </button>
       </div>
       {userType === 'petparent' ? <PetParentRegister /> : <VetRegister />}
