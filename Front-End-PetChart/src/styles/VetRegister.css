@@ -1,19 +1,14 @@
 .vetregister-page-box {
-  background: linear-gradient(10deg, #FF9500 0%, #FF6B35 100%);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
   width: 100%;
   max-width: 620px;
-  margin: 2rem auto;
   text-align: center;
 }
 
 .vetregister-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 0.5rem;
+  gap: 5px;
 }
 
 .vetregister-field {
@@ -25,8 +20,8 @@
 
 .vetregister-field label {
   font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 2px;
+  font-size: 20px;
+  margin-bottom: 3px;
 }
 
 .vetregister-field input[type="text"],
@@ -54,7 +49,7 @@
   margin-top: 12px;
   background: linear-gradient(90deg, #ff9800 0%, #ff6d00 100%);
   color: #fff;
-  border: 1.5px solid #fff;
+  border: 2.5px solid #fff;
   border-radius: 8px;
   padding: 0.9rem 0;
   font-weight: 600;

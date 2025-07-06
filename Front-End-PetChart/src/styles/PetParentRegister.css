@@ -1,20 +1,15 @@
 .petparentregister-page-box {
-    background: linear-gradient(10deg, #FF9500 0%, #FF6B35 100%);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 620px;
-    margin: 2rem auto;
-    text-align: center;         
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 620px;
+  text-align: center;   
 }
 
 
 .petparentregister-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 0.5rem;
+  gap: 5px;
 }
 
 .petparentregister-field {
@@ -26,9 +21,8 @@
 
 .petparentregister-field label {
   font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 2px;
-  color: #414040;
+  font-size: 20px;
+  margin-bottom: 3px;
 }
 
 .petparentregister-field input[type="text"],
@@ -37,7 +31,7 @@
   width: 100%;
   padding: 0.7rem;
   border-radius: 6px;
-  border: 1.5px solid #e0e0e0;
+  border: 2.5px solid #e0e0e0;
   font-size: 15px;
   outline: none;
   background: #fafbfc;
@@ -53,7 +47,7 @@
 }
 
 .petparentregister-submit-btn {
-  margin-top: 12px;
+  margin-top: 2rem;
   background: linear-gradient(90deg, #ff9800 0%, #ff6d00 100%);
   color: #ffffff;
   border: 1.5px solid #fff;
