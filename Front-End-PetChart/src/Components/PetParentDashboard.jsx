@@ -15,7 +15,7 @@ const PetParentDashboard = () => {
   const loadDashboardData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/users/account', {
+      const response = await fetch('/api/users/account', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

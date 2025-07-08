@@ -32,8 +32,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const fetchUserData = async (authToken, userType) => {
-    const endpoint = userType === 'veterinarian' ? '/api/vets/account' : '/api/users/account';
-    const response = await fetch(`http://localhost:3001${endpoint}`, {
+    const endpoint = userType === 'veterinarian' ? '/vets/account' : '/users/account';
+    const response = await fetch(`${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${authToken}`,
         'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const userTypeResponse = await fetch(
-        `http://localhost:3001/api/users/check-user-type?email=${encodeURIComponent(email)}`
+        `/users/check-user-type?email=${encodeURIComponent(email)}`
       );
       const userTypeData = await userTypeResponse.json();
 
@@ -59,9 +59,9 @@ export const AuthProvider = ({ children }) => {
       }
 
       const loginEndpoint = userTypeData.userType === 'veterinarian' 
-        ? '/api/vets/login' 
-        : '/api/users/login';
-      const loginResponse = await fetch(`http://localhost:3001${loginEndpoint}`, {
+        ? '/vets/login' 
+        : '/users/login';
+      const loginResponse = await fetch(`${loginEndpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

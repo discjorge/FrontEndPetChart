@@ -3,11 +3,11 @@ import '../styles/VetRegister.css';
 
 export default function VetRegister() {
   const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
-    profileImage: null,
+    profile_image: null,
   });
   const [message, setMessage] = useState('');
 
@@ -26,18 +26,27 @@ export default function VetRegister() {
       if (value) formData.append(key, value);
     });
     try {
-      const res = await fetch('http://localhost:3000/vets/register', {
+      console.log('Sending form data:', Object.fromEntries(formData));
+      
+      const res = await fetch('/vets/register', {
         method: 'POST',
         body: formData,
       });
-      const data = await res.json();
-      if (res.ok) {
-        setMessage('Registration successful!');
-      } else {
-        setMessage(data.message || 'Registration failed.');
+      
+      console.log('Response status:', res.status);
+      
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error('Server error response:', errorText);
+        setMessage(`Registration failed: ${res.status} - ${errorText}`);
+        return;
       }
+      
+      const data = await res.json();
+      setMessage('Registration successful!');
     } catch (err) {
-      setMessage('An error occurred.');
+      console.error('Fetch error:', err);
+      setMessage(`An error occurred: ${err.message}`);
     }
   };
 
@@ -45,12 +54,12 @@ export default function VetRegister() {
     <div className="vetregister-page-box">
       <form className="vetregister-form" onSubmit={handleSubmit}>
         <div className="vetregister-field">
-          <label htmlFor="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" value={form.firstName} onChange={handleChange} required />
+          <label htmlFor="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" value={form.firstName} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
-          <label htmlFor="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" value={form.lastName} onChange={handleChange} required />
+          <label htmlFor="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" value={form.lastName} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
           <label htmlFor="email">Email Address</label>
@@ -61,8 +70,8 @@ export default function VetRegister() {
           <input type="password" id="password" name="password" value={form.password} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
-          <label htmlFor="profileImage">Profile Image</label>
-          <input type="file" id="profileImage" name="profileImage" accept="image/*" onChange={handleChange} />
+          <label htmlFor="profile_image">Profile Image</label>
+          <input type="file" id="profile_image" name="profile_image" accept="image/*" onChange={handleChange} />
         </div>
         <button type="submit" className="vetregister-submit-btn">Create PetChart Account</button>
         {message && <div className="vetregister-message">{message}</div>}
