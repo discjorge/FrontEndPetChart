@@ -15,7 +15,7 @@ const VeterinarianDashboard = () => {
   const loadDashboardData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/vets/account', {
+      const response = await fetch('/vets/account', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -44,7 +44,6 @@ const VeterinarianDashboard = () => {
     <div className="vet-dashboard">
       <header className="dashboard-header">
         <h1>Dr. {user?.first_name} {user?.last_name} 👩‍⚕️</h1>
-        <button onClick={handleLogout} className="logout-btn">Logout</button>
       </header>
       
       <div className="dashboard-content">

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContent.jsx';
 import '../styles/VetRegister.css';
 
 export default function VetRegister() {
+  const navigate = useNavigate();
+  const { setToken, setUser } = useAuth();
   const [form, setForm] = useState({
     first_name: '',
     last_name: '',
@@ -43,7 +47,22 @@ export default function VetRegister() {
       }
       
       const data = await res.json();
-      setMessage('Registration successful!');
+      setMessage('Registration successful! Redirecting to dashboard...');
+      
+      const authToken = data.token; 
+      localStorage.setItem('token', authToken);
+      localStorage.setItem('userType', 'veterinarian');
+      
+
+      setToken(authToken);
+      setUser({ 
+        ...data.user, 
+        userType: 'veterinarian' 
+      });
+      
+      setTimeout(() => {
+        navigate('/dashboard/veterinarian');
+      }, 1500);
     } catch (err) {
       console.error('Fetch error:', err);
       setMessage(`An error occurred: ${err.message}`);
@@ -55,11 +74,11 @@ export default function VetRegister() {
       <form className="vetregister-form" onSubmit={handleSubmit}>
         <div className="vetregister-field">
           <label htmlFor="first_name">First Name</label>
-          <input type="text" id="first_name" name="first_name" value={form.firstName} onChange={handleChange} required />
+          <input type="text" id="first_name" name="first_name" value={form.first_name} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
           <label htmlFor="last_name">Last Name</label>
-          <input type="text" id="last_name" name="last_name" value={form.lastName} onChange={handleChange} required />
+          <input type="text" id="last_name" name="last_name" value={form.last_name} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
           <label htmlFor="email">Email Address</label>

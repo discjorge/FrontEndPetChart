@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './Components/AuthContent.jsx';
 import ProtectedRoute from './Components/ProtectedRoute.jsx';
+import NavBar from './Components/NavBar.jsx';
 import Home from './Components/Home.jsx';
 import LoginPage from './Components/LoginPage.jsx';
 import Register from './Components/Register.jsx';
@@ -25,13 +26,19 @@ function App() {
           {/* Protected routes */}
           <Route path="/dashboard/pet-parent/*" element={
             <ProtectedRoute allowedUserTypes={['pet-parent']}>
-              <PetParentDashboard />
+              <div>
+                <NavBar />
+                <PetParentDashboard />
+              </div>
             </ProtectedRoute>
           } />
           
           <Route path="/dashboard/veterinarian/*" element={
             <ProtectedRoute allowedUserTypes={['veterinarian']}>
-              <VeterinarianDashboard />
+              <div>
+                <NavBar />
+                <VeterinarianDashboard />
+              </div>
             </ProtectedRoute>
           } />
         </Routes>

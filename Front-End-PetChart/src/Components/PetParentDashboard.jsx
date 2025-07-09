@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContent.jsx';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './NavBar.jsx';
 
 const PetParentDashboard = () => {
   const { user, logout } = useAuth();
@@ -15,7 +16,7 @@ const PetParentDashboard = () => {
   const loadDashboardData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/users/account', {
+      const response = await fetch('/users/account', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

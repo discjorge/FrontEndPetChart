@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "./AuthContent.jsx";
 import logo from "../assets/Images/logo.png"
 
-export default function NavBar({ token, setToken }) {
-  const handleLogout = () => {
-    setToken(null);
-    localStorage.removeItem("token");
-  };
+export default function NavBar() {
+  const { token, logout } = useAuth();
 
   return (
     <nav className="navbar">
@@ -20,7 +18,7 @@ export default function NavBar({ token, setToken }) {
             <>
               <Link className="nav-link" to="/account">Account</Link>
               <Link className="nav-link" to="/main">Main Page</Link>
-              <button className="nav-link logout-button" onClick={handleLogout}>Logout</button>
+              <button className="nav-link logout-button" onClick={logout}>Logout</button>
             </>
           ) : (
             <>

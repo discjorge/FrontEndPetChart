@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContent.jsx';
 import '../styles/PetParentRegister.css';
 
 export default function PetParentRegister() {
+  const navigate = useNavigate();
+  const { setToken, setUser } = useAuth();
   const [form, setForm] = useState({
     owner_name: '',
     email: '',
@@ -46,8 +50,22 @@ export default function PetParentRegister() {
         return;
       }
       
-      const data = await res.json();
-      setMessage('Registration successful!');
+            const data = await res.json();
+      setMessage('Registration successful! Redirecting to dashboard...');
+      
+      const authToken = data.token; 
+      localStorage.setItem('token', authToken);
+      localStorage.setItem('userType', 'pet-parent');
+      
+      setToken(authToken);
+      setUser({ 
+        ...data.user, 
+        userType: 'pet-parent' 
+      });
+      
+      setTimeout(() => {
+        navigate('/dashboard/pet-parent');
+      }, 1500);
     } catch (err) {
       console.error('Fetch error:', err);
       setMessage(`An error occurred: ${err.message}`);
