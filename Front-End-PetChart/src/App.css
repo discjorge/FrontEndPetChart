@@ -35,6 +35,10 @@ html, body {
   margin: 0 auto 1.5rem auto;
 }
 
+.landing-page h1 {
+  color: #0e659f
+}
+
 .button-group {
   display: flex;
   gap: 1rem; 
