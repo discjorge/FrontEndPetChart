@@ -51,7 +51,7 @@ export default function PetParentRegister() {
       }
       
             const data = await res.json();
-      setMessage('Registration successful! Redirecting to dashboard...');
+      setMessage('Registration successful! Setting up your account...');
       
       const authToken = data.token; 
       localStorage.setItem('token', authToken);
@@ -63,9 +63,13 @@ export default function PetParentRegister() {
         userType: 'pet-parent' 
       });
       
+      // Give backend more time to process the account
       setTimeout(() => {
-        navigate('/dashboard/pet-parent');
-      }, 1500);
+        setMessage('Account ready! Redirecting to dashboard...');
+        setTimeout(() => {
+          navigate('/dashboard/pet-parent');
+        }, 1000);
+      }, 2000);
     } catch (err) {
       console.error('Fetch error:', err);
       setMessage(`An error occurred: ${err.message}`);
