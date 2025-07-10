@@ -46,8 +46,8 @@ const LoginPage = () => {
           <div className="logo-icon">
             <img src={logo} alt="PetChart Logo" />
           </div>
-          <h1>Welcome Back!</h1>
-          <h3>Sign in to your PetChart account</h3>
+          <h1 className="login-page-h1">Welcome Back!</h1>
+          <h3 className="login-page-h3">Sign in to your PetChart account</h3>
         </div>
 
         {error && (
