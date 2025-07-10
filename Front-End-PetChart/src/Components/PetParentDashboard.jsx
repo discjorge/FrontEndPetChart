@@ -6,6 +6,7 @@ import PetFunFact from './PetFunFact.jsx';
 import PetOfTheDay from './PetOfTheDay.jsx';
 import UpcomingAppointments from './UpcomingAppointments.jsx';
 import Messages from './Messages.jsx';
+import MyVet from './MyVet.jsx';
 import '../styles/Dashboard.css';
 
 const PetParentDashboard = () => {
@@ -18,9 +19,12 @@ const PetParentDashboard = () => {
     loadDashboardData();
   }, []);
 
-  const loadDashboardData = async () => {
+  const loadDashboardData = async (retryCount = 0) => {
     try {
       const token = localStorage.getItem('token');
+      console.log('Loading dashboard data with token:', token ? 'Token exists' : 'No token');
+      console.log('Current user from auth context:', user);
+      
       const response = await fetch('/users/account', {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -28,9 +32,23 @@ const PetParentDashboard = () => {
         }
       });
       
+      console.log('Account response status:', response.status);
+      console.log('Account response URL:', response.url);
+      
       if (response.ok) {
         const data = await response.json();
+        console.log('Account data received:', data);
         setDashboardData(data);
+      } else if (response.status === 404 && retryCount < 3) {
+        // Retry for 404 errors (account might not be ready yet)
+        console.log(`Account not ready, retrying in 2 seconds... (attempt ${retryCount + 1}/3)`);
+        setTimeout(() => {
+          loadDashboardData(retryCount + 1);
+        }, 2000);
+        return; // Don't set loading to false yet
+      } else {
+        const errorText = await response.text();
+        console.error('Account fetch failed:', response.status, errorText);
       }
     } catch (error) {
       console.error('Failed to load dashboard:', error);
@@ -74,6 +92,8 @@ const PetParentDashboard = () => {
         <UpcomingAppointments />
 
         <Messages />
+        
+        <MyVet />
         
         <PetFunFact />
         

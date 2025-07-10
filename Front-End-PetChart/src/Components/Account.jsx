@@ -21,6 +21,8 @@ export default function Account() {
 
     if (!user) return <p>Not logged in.</p>
 
+    console.log('Account component - user data:', user);
+
     return (
   <div className="account-page">
     <div className="account-box">

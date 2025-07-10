@@ -19,9 +19,12 @@ const UpcomingAppointments = () => {
       setLoading(true);
       setError('');
       
+      const userId = user.id || user.user_id || user._id;
+      const vetId = user.vet_id || user.id || user.user_id || user._id;
+      
       const endpoint = user.userType === 'veterinarian' 
-        ? `/vet/${user.id}` 
-        : `/user/${user.id}`;
+        ? `/appointments/vets/${vetId}` 
+        : `/appointments/user/${userId}`;
       
       const response = await fetch(endpoint, {
         headers: {
@@ -36,8 +39,8 @@ const UpcomingAppointments = () => {
       
       const data = await response.json();
       
-      if (data.appointments && Array.isArray(data.appointments)) {
-        setAppointments(data.appointments);
+      if (Array.isArray(data)) {
+        setAppointments(data);
       } else {
         setAppointments([]);
       }
@@ -49,6 +52,8 @@ const UpcomingAppointments = () => {
       setLoading(false);
     }
   };
+
+
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -71,20 +76,14 @@ const UpcomingAppointments = () => {
       ) : appointments.length > 0 ? (
         <div className="appointments-list">
           {appointments.map((appointment, index) => (
-            <div key={index} className="appointment-item">
+            <div key={appointment.id || index} className="appointment-item">
               <div className="appointment-date">
-                📅 {formatDate(appointment.date)}
+                📅 {formatDate(appointment.time)}
               </div>
               <div className="appointment-details">
-                <strong>{appointment.title || 'Appointment'}</strong>
-                {appointment.description && (
-                  <p>{appointment.description}</p>
-                )}
-                {appointment.petName && (
-                  <p>Pet: {appointment.petName}</p>
-                )}
-                {appointment.ownerName && (
-                  <p>Owner: {appointment.ownerName}</p>
+                <strong>{appointment.appointment_reason || 'Appointment'}</strong>
+                {appointment.appointment_reason && (
+                  <p>Reason: {appointment.appointment_reason}</p>
                 )}
               </div>
             </div>
