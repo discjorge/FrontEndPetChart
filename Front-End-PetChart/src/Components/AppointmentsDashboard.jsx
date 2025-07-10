@@ -16,7 +16,10 @@ const AppointmentsDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch("http://localhost:3001/appointments", {
-        headers: {},
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
 
       if (response.ok) {
@@ -24,7 +27,9 @@ const AppointmentsDashboard = () => {
         setAppointments(data);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Failed to load appointments:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
