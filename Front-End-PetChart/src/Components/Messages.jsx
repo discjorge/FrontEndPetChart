@@ -95,11 +95,6 @@ const Messages = () => {
               )}
             </div>
           ))}
-          {messages.length > 5 && (
-            <div className="more-messages">
-              +{messages.length - 5} more messages
-            </div>
-          )}
         </div>
       ) : (
         <p className="no-messages">No messages yet</p>
