@@ -9,6 +9,7 @@ import PetParentRegister from './Components/PetParentRegister.jsx';
 import VetRegister from './Components/VetRegister.jsx';
 import PetParentDashboard from './Components/PetParentDashboard.jsx';
 import VeterinarianDashboard from './Components/VetDashboard.jsx';
+import Account from './Components/Account.jsx'
 import './App.css';
 
 function App() {
@@ -38,6 +39,15 @@ function App() {
               <div>
                 <NavBar />
                 <VeterinarianDashboard />
+              </div>
+            </ProtectedRoute>
+          } />
+
+          <Route path="/account" element={
+            <ProtectedRoute allowedUserTypes={['pet-parent', 'veterinarian']}>
+              <div>
+                <NavBar />
+                <Account /> 
               </div>
             </ProtectedRoute>
           } />

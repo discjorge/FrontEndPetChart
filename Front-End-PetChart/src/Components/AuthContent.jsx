@@ -109,7 +109,8 @@ export const AuthProvider = ({ children }) => {
     logout,
     isAuthenticated,
     setToken,
-    setUser
+    setUser,
+    userType: user?.userType
   };
 
   return (

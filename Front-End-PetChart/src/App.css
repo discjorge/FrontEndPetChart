@@ -35,6 +35,10 @@ html, body {
   margin: 0 auto 1.5rem auto;
 }
 
+.landing-page h1 {
+  color: #0e659f
+}
+
 .button-group {
   display: flex;
   gap: 1rem; 
@@ -243,4 +247,45 @@ body {
 .role-features li {
   margin: 8px 0;
   color: #6c757d;
+}
+
+.account-page {
+  padding: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+
+.account-box {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  width: 100%;
+  color: #0e659f
+}
+
+.account-box h2 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.account-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.account-box li {
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
