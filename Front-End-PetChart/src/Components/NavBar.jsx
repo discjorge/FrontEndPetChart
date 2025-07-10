@@ -25,7 +25,6 @@ export default function NavBar() {
           {token ? (
             <>
               <Link className="nav-link" to="/account">Account</Link>
-              <Link className="nav-link" to="/main">Main Page</Link>
               <button className="nav-link logout-button" onClick={logout}>Logout</button>
             </>
           ) : (
