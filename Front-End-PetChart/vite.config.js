@@ -8,6 +8,8 @@ export default defineConfig({
         '/api': 'http://localhost:3000',
         '/users': 'http://localhost:3000',
         '/vets': 'http://localhost:3000',
+        '/appointments': 'http://localhost:3000', 
+        '/messages': 'http://localhost:3000',
       },
     },
 })

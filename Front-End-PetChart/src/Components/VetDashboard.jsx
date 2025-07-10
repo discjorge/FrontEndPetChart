@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContent.jsx';
+import { useNavigate } from 'react-router-dom';
 import PetFunFact from './PetFunFact.jsx';
 import PetOfTheDay from './PetOfTheDay.jsx';
 import UpcomingAppointments from './UpcomingAppointments.jsx';
@@ -8,6 +9,7 @@ import '../styles/Dashboard.css';
 
 const VeterinarianDashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -45,10 +47,9 @@ const VeterinarianDashboard = () => {
       </header>
       
       <div className="quick-actions-banner">
-        <button className="action-btn">🏥 Manage Patients</button>
-        <button className="action-btn">📝 Create Clinical Notes</button>
-        <button className="action-btn">📅 View Schedule</button>
-        <button className="action-btn">💬 Patient Messages</button>
+        <button className="action-btn" onClick={() => navigate('/manage-patients')}>🐾 Manage Pet Patients</button>
+        <button className="action-btn">📝 Create Pateint Message</button>
+        <button className="action-btn" onClick={() => navigate('/coming-soon')}>📋 View Medical Records</button>
       </div>
       
       <div className="dashboard-content">
@@ -56,19 +57,25 @@ const VeterinarianDashboard = () => {
           <h2>Your Practice</h2>
           {dashboardData && (
             <div className="vet-details">
+              <img
+                src={user.profile_image_url || user.pet_image?.url || defaultImg}
+                alt="Profile"
+                className="profile-img"
+              />
               <p><strong>Email:</strong> {dashboardData.email}</p>
               <p><strong>Profile:</strong> {dashboardData.profile_image_url ? 'Uploaded' : 'Not set'}</p>
             </div>
           )}
         </div>
+
+        <UpcomingAppointments />
+        
+        <Messages />
         
         <PetFunFact />
         
         <PetOfTheDay />
         
-        <UpcomingAppointments />
-        
-        <Messages />
       </div>
     </div>
   );

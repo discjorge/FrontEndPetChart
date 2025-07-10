@@ -11,6 +11,7 @@ import PetParentDashboard from './Components/PetParentDashboard.jsx';
 import VeterinarianDashboard from './Components/VetDashboard.jsx';
 import Account from './Components/Account.jsx';
 import ComingSoon from './Components/ComingSoon.jsx';
+import ManagePatients from './Components/ManagePatients.jsx';
 import './App.css';
 
 function App() {
@@ -56,6 +57,12 @@ function App() {
           <Route path="/coming-soon" element={
             <ProtectedRoute allowedUserTypes={['pet-parent', 'veterinarian']}>
               <ComingSoon />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/manage-patients" element={
+            <ProtectedRoute allowedUserTypes={['veterinarian']}>
+              <ManagePatients />
             </ProtectedRoute>
           } />
         </Routes>
