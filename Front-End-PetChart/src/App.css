@@ -130,8 +130,7 @@ body {
 }
 
 .logo-img {
-  height: 250px;
-  width: auto; 
+  height: 150px; 
   object-fit: contain; 
   display: block;
  

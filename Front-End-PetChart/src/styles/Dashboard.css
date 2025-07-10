@@ -481,3 +481,148 @@ h1, h3, h2{
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
+.manage-patients-container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 2rem;
+}
+
+.manage-patients-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  background: #0e659f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #0a4a7a;
+}
+
+.manage-patients-header h1 {
+  color: #0e659f;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-family: 'Dancing Script', cursive;
+}
+
+.manage-patients-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.patients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.patient-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e9ecef;
+}
+
+.patient-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.patient-image-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.patient-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0e659f;
+}
+
+.patient-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pet-name {
+  color: #0e659f;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.owner-name {
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.pet-details {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.animal, .breed {
+  color: #0e659f;
+  font-weight: 500;
+}
+
+.email {
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.patient-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.action-btn-small {
+  background: #ff6b35;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex: 1;
+}
+
+.action-btn-small:hover {
+  background: #ff5722;
+}
+
+.loading-container, .error-container, .no-patients {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.no-patients p:first-child {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
