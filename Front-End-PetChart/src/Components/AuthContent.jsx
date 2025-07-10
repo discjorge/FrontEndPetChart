@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }) => {
         setUser({ ...userData, userType: storedUserType });
         setToken(storedToken);
       } catch (error) {
-        // Token is invalid or expired
         logout();
       }
     }

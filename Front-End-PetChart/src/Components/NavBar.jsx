@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContent.jsx";
-import logo from "../assets/Images/logo.png"
+import navbarLogo from "../assets/Images/Navbar-logo.png"
 
 export default function NavBar() {
   const { token, logout, userType } = useAuth();
@@ -17,7 +17,7 @@ export default function NavBar() {
     <nav className="navbar">
       <div className="nav-container">
         <Link to={homePath} className="logo-link">
-          <img src={logo} alt="PetChart logo" className="logo-img" />
+          <img src={navbarLogo} alt="PetChart logo" className="logo-img" />
         </Link>
 
         <div className="nav-links">

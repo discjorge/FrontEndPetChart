@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContent.jsx';
-import { useNavigate } from 'react-router-dom';
+import PetFunFact from './PetFunFact.jsx';
+import PetOfTheDay from './PetOfTheDay.jsx';
+import UpcomingAppointments from './UpcomingAppointments.jsx';
+import Messages from './Messages.jsx';
+import '../styles/Dashboard.css';
 
 const VeterinarianDashboard = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,18 +36,20 @@ const VeterinarianDashboard = () => {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
   if (loading) return <div>Loading...</div>;
 
   return (
     <div className="vet-dashboard">
       <header className="dashboard-header">
-        <h1>Dr. {user?.first_name} {user?.last_name} 👩‍⚕️</h1>
+        <h1>Dr. {user?.first_name} {user?.last_name}</h1>
       </header>
+      
+      <div className="quick-actions-banner">
+        <button className="action-btn">🏥 Manage Patients</button>
+        <button className="action-btn">📝 Create Clinical Notes</button>
+        <button className="action-btn">📅 View Schedule</button>
+        <button className="action-btn">💬 Patient Messages</button>
+      </div>
       
       <div className="dashboard-content">
         <div className="vet-info-card">
@@ -57,13 +62,13 @@ const VeterinarianDashboard = () => {
           )}
         </div>
         
-        <div className="clinical-tools">
-          <h3>Clinical Tools</h3>
-          <button className="action-btn">🏥 Manage Patients</button>
-          <button className="action-btn">📝 Create Clinical Notes</button>
-          <button className="action-btn">📅 View Schedule</button>
-          <button className="action-btn">💬 Patient Messages</button>
-        </div>
+        <PetFunFact />
+        
+        <PetOfTheDay />
+        
+        <UpcomingAppointments />
+        
+        <Messages />
       </div>
     </div>
   );

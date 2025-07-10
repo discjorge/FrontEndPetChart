@@ -81,9 +81,9 @@ body {
 }
 
 .navbar {
-  background-color: #2176d2;
+  background: linear-gradient(135deg, #667eea 0%, #4A90A4 100%);
   color: white;
-  padding: 0.75rem 2rem;
+  padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -96,11 +96,13 @@ body {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  height: 60px;
 }
 
 .logo-link {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 .nav-links {
   display: flex;
@@ -128,9 +130,11 @@ body {
 }
 
 .logo-img {
-  height: 100px;
-  width: auto;
+  height: 250px;
+  width: auto; 
+  object-fit: contain; 
   display: block;
+ 
 }
 
 .app-wrapper {
@@ -172,63 +176,6 @@ body {
 .main-page {
   padding: 2rem;
   text-align: center;
-}
-
-/* Dashboard Styles */
-.pet-parent-dashboard, .vet-dashboard {
-  min-height: 100vh;
-  background: #f8f9fa;
-}
-
-.dashboard-header {
-  background: white;
-  padding: 20px 30px;
-  border-bottom: 1px solid #e9ecef;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dashboard-content {
-  padding: 30px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-}
-
-.pet-info-card, .vet-info-card, .quick-actions, .clinical-tools {
-  background: white;
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid #e9ecef;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-}
-
-.action-btn {
-  width: 100%;
-  padding: 12px 20px;
-  background: #ff6b35;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  margin: 8px 0;
-  transition: all 0.2s ease;
-}
-
-.action-btn:hover {
-  background: #ff5722;
-  transform: translateY(-1px);
-}
-
-.logout-btn {
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .error-message {
