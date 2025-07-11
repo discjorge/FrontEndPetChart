@@ -51,7 +51,7 @@ const PetOfTheDay = () => {
 
   return (
     <div className="pet-of-day-card">
-      <h3>Pet of the Day</h3>
+      <h3>🌟 Pet of the Day</h3>
       {loading ? (
         <div className="pet-of-day-loading">
           <p>Loading adorable pet...</p>

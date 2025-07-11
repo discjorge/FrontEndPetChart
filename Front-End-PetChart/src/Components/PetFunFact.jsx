@@ -43,7 +43,7 @@ const PetFunFact = () => {
 
   return (
     <div className="fun-fact-card">
-      <h3>Pet Fun Fact of the Day</h3>
+      <h3>❕ Pet Fun Fact of the Day</h3>
       {loading ? (
         <p className="fun-fact-loading">Loading fun fact...</p>
       ) : (
