@@ -5,6 +5,8 @@ import PetFunFact from './PetFunFact.jsx';
 import PetOfTheDay from './PetOfTheDay.jsx';
 import UpcomingAppointments from './UpcomingAppointments.jsx';
 import Messages from './Messages.jsx';
+import VetNews from './VetNews.jsx';
+import NearbyEmergencyVets from './NearbyEmergencyVets.jsx';
 import '../styles/Dashboard.css';
 
 const VeterinarianDashboard = () => {
@@ -46,7 +48,7 @@ const VeterinarianDashboard = () => {
         <h1>Dr. {user?.first_name} {user?.last_name}</h1>
       </header>
       
-      <div className="quick-actions-banner">
+      <div className="vet-quick-actions-banner">
         <button className="action-btn" onClick={() => navigate('/manage-patients')}>🐾 Manage Pet Patients</button>
         <button className="action-btn">📝 Create Pateint Message</button>
         <button className="action-btn" onClick={() => navigate('/coming-soon')}>📋 View Medical Records</button>
@@ -72,9 +74,9 @@ const VeterinarianDashboard = () => {
         
         <Messages />
         
-        <PetFunFact />
+        <VetNews />
         
-        <PetOfTheDay />
+        <NearbyEmergencyVets />
         
       </div>
     </div>
