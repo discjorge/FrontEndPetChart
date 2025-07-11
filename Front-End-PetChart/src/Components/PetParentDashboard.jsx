@@ -77,14 +77,16 @@ const PetParentDashboard = () => {
           <h2>Your Pet</h2>
           {dashboardData && (
             <div className="pet-details">
-              <img 
-                src={dashboardData.pet_image_url || defaultImg} 
+              <img
+                src={
+                  dashboardData.pet_image_url
+                    ? `http://localhost:3000${dashboardData.pet_image_url}`
+                    : defaultImg
+                }
                 alt={`${dashboardData.pet_name}`}
                 className="pet-image"
               />
               <h3>{dashboardData.pet_name}</h3>
-              <p>{dashboardData.breed}</p>
-              <p> {dashboardData.animal}</p>
             </div>
           )}
         </div>

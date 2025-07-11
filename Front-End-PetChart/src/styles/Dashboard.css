@@ -72,8 +72,8 @@ h1, h3, h2{
 }
 
 .pet-image {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem auto;
