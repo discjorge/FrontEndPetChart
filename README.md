@@ -31,6 +31,15 @@ Our user goals include:
 Package Dependencies: 
 1. npm install
 2. npm install react-router-dom
+3. npm install express pg dotenv
+4. npm install bcrypt
+5. npm install jsonwebtoken
+6. npm install cors
+7. npm install multer
+
+Additional Setup Notes:
+* Database is "petchart"
+* Remember to chance username and passowrd in .env DATABASE_URL
 
 Frontend Tech Stack:
 * React (w/Vite) & react router for navigation
