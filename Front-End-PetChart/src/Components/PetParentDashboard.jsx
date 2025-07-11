@@ -94,11 +94,11 @@ const PetParentDashboard = () => {
         <UpcomingAppointments />
 
         <Messages />
-        
-        <MyVet />
-        
+
         <PetFunFact />
         
+        <MyVet />
+                
         <PetOfTheDay />
         
 
