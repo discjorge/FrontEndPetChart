@@ -15,8 +15,10 @@ const AppointmentsDashboard = () => {
   });
 
   useEffect(() => {
-    fetchAppointments();
-  }, []);
+    if (user?.userId && token) {
+      fetchAppointments();
+    }
+  }, [user, token]);
 
   const fetchAppointments = async () => {
     try {
