@@ -10,7 +10,10 @@ const UpcomingAppointments = () => {
 
   useEffect(() => {
     if (user && token) {
+      console.log('UpcomingAppointments: User and token available, fetching appointments');
       fetchAppointments();
+    } else {
+      console.log('UpcomingAppointments: Missing user or token', { user: !!user, token: !!token });
     }
   }, [user, token]);
 
@@ -22,9 +25,17 @@ const UpcomingAppointments = () => {
       const userId = user.id || user.user_id || user._id;
       const vetId = user.vet_id || user.id || user.user_id || user._id;
       
+      if (!userId && !vetId) {
+        throw new Error('No user ID found in user object');
+      }
+      
       const endpoint = user.userType === 'veterinarian' 
         ? `/appointments/vets/${vetId}` 
         : `/appointments/user/${userId}`;
+      
+      console.log('Fetching appointments from:', endpoint);
+      console.log('User data:', user);
+      console.log('User type:', user.userType);
       
       const response = await fetch(endpoint, {
         headers: {
@@ -33,11 +44,16 @@ const UpcomingAppointments = () => {
         }
       });
       
+      console.log('Response status:', response.status);
+      
       if (!response.ok) {
-        throw new Error('Failed to fetch appointments');
+        const errorText = await response.text();
+        console.error('Response error:', errorText);
+        throw new Error(`Failed to fetch appointments: ${response.status} ${response.statusText}`);
       }
       
       const data = await response.json();
+      console.log('Appointments data:', data);
       
       if (Array.isArray(data)) {
         setAppointments(data);
@@ -46,7 +62,7 @@ const UpcomingAppointments = () => {
       }
     } catch (err) {
       console.error('Error fetching appointments:', err);
-      setError('Unable to load appointments');
+      setError(`Unable to load appointments: ${err.message}`);
       setAppointments([]);
     } finally {
       setLoading(false);
