@@ -1,3 +1,5 @@
+
+=======
 import { useState, useEffect } from "react";
 import { useAuth } from "./AuthContent.jsx";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +10,9 @@ import Messages from "./Messages.jsx";
 import VetNews from "./VetNews.jsx";
 import NearbyEmergencyVets from "./NearbyEmergencyVets.jsx";
 import "../styles/Dashboard.css";
+import VetUserList from "./messages/VetUserList.jsx";
+import VetMessageByUser from './messages/VetMessagebyUser.jsx';
+
 
 const VeterinarianDashboard = () => {
   const { user } = useAuth();
@@ -57,7 +62,7 @@ const VeterinarianDashboard = () => {
         >
           🐾 Manage Pet Patients
         </button>
-        <button className="action-btn">📝 Create Pateint Message</button>
+        <button className="action-btn" onClick={() => navigate("/dashboard/veterinarian/messages")}>💬 Patient Messages</button>
         <button className="action-btn" onClick={() => navigate("/coming-soon")}>
           📋 View Medical Records
         </button>
@@ -67,6 +72,7 @@ const VeterinarianDashboard = () => {
         >
           📆 View Appointments
         </button>
+
       </div>
 
       <div className="dashboard-content">
@@ -95,10 +101,15 @@ const VeterinarianDashboard = () => {
         <UpcomingAppointments />
 
         <Messages />
+        
+        <PetFunFact />
+        
+        <PetOfTheDay />
 
         <VetNews />
 
         <NearbyEmergencyVets />
+
       </div>
     </div>
   );
