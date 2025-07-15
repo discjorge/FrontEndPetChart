@@ -4,7 +4,6 @@ import { useAuth } from "./AuthContent.jsx";
 import { useNavigate } from "react-router-dom"
 import defaultImg from "../assets/images/default.png";
 
-
 export default function Account() {
     const { user, token, } = useAuth();
     const navigate = useNavigate();
@@ -28,10 +27,16 @@ export default function Account() {
     <div className="account-box">
       <h2>Account Info</h2>
       <img
-        src={user.profile_image_url || user.pet_image?.url || defaultImg}
+        src={
+            user.profile_image_url
+                ? `http://localhost:3000${user.profile_image_url}`
+                : user.pet_image_url
+                ? `http://localhost:3000${user.pet_image_url}`
+                : defaultImg
+        }
         alt="Profile"
         className="profile-img"
-      />
+    />
       <ul>
         {user.userType === "veterinarian" ? (
           <>
