@@ -11,6 +11,10 @@ import PetParentDashboard from './Components/PetParentDashboard.jsx';
 import VeterinarianDashboard from './Components/VetDashboard.jsx';
 import Account from './Components/Account.jsx';
 import ComingSoon from './Components/ComingSoon.jsx';
+import VetUserList from './Components/messages/VetUserList.jsx';
+import VetMessageByUser from './Components/messages/VetMessagebyUser.jsx';
+import UserCreateMessage from './Components/messages/UserCreateMessage.jsx';
+import UserMessages from './Components/messages/UserMessages.jsx';
 import ManagePatients from './Components/ManagePatients.jsx';
 import './App.css';
 
@@ -23,8 +27,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/register/pet-parent" element={<PetParentRegister />} />
-          <Route path="/register/veterinarian" element={<VetRegister />} />
+          <Route path="/register/pet-parent/*" element={<PetParentRegister />} />
+          <Route path="/register/veterinarian/*" element={<VetRegister />} />
           
           {/* Protected routes */}
           <Route path="/dashboard/pet-parent/*" element={
@@ -51,6 +55,42 @@ function App() {
                 <NavBar />
                 <Account /> 
               </div>
+            </ProtectedRoute>
+          } />
+
+            {/* Vet Messages */}
+          <Route path="/dashboard/veterinarian/messages" element={
+            <ProtectedRoute allowedUserTypes={['veterinarian']}>
+              <>
+                <NavBar />
+                <VetUserList />
+              </>
+            </ProtectedRoute>
+          } />
+          <Route path="/dashboard/veterinarian/messages/:userID" element={
+            <ProtectedRoute allowedUserTypes={['veterinarian']}>
+              <>
+                <NavBar />
+                <VetMessageByUser />
+              </>
+            </ProtectedRoute>
+          } />
+
+          {/* User Messages */}
+          <Route path="dashboard/pet-parent/messages/" element={
+            <ProtectedRoute allowedUserTypes={['pet-parent']}>
+              <>
+                <NavBar />
+                <UserCreateMessage />
+              </>
+            </ProtectedRoute>
+          } />
+          <Route path="/messages" element={
+            <ProtectedRoute allowedUserTypes={['pet-parent']}>
+              <>
+                <NavBar />
+                <UserMessages />
+              </>
             </ProtectedRoute>
           } />
 
