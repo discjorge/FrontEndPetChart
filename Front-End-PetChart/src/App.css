@@ -1,10 +1,11 @@
- *{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -25,7 +26,7 @@ html, body {
   margin: 0;
   box-sizing: border-box;
   overflow: hidden;
-  color: #1a1a1a; 
+  color: #1a1a1a;
 }
 
 .landing-page img {
@@ -53,9 +54,9 @@ html, body {
 
 .button-group {
   display: flex;
-  gap: 1rem; 
-  justify-content: center; 
-  margin-top: 1rem; 
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .button-group button {
@@ -77,17 +78,36 @@ html, body {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .navbar {
-  background: linear-gradient(135deg, #667eea 0%, #4A90A4 100%);
+  background: linear-gradient(135deg, #667eea 0%, #4a90a4 100%);
   color: white;
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-form {
+  background: #667eea;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  max-width: 680px;
+  padding: 10px;
+}
+.appointment-button {
+  background-color: #f67a4d;
+  color: white;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .nav-container {
@@ -130,10 +150,9 @@ body {
 }
 
 .logo-img {
-  height: 150px; 
-  object-fit: contain; 
+  height: 150px;
+  object-fit: contain;
   display: block;
- 
 }
 
 .app-wrapper {
@@ -239,7 +258,6 @@ body {
   margin-bottom: 1rem;
 }
 
-
 .account-box {
   background-color: #fff;
   border-radius: 20px;
@@ -247,7 +265,7 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
   max-width: 600px;
   width: 100%;
-  color: #0e659f
+  color: #0e659f;
 }
 
 .account-box h2 {

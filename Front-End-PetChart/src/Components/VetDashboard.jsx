@@ -57,7 +57,7 @@ const VeterinarianDashboard = () => {
         >
           🐾 Manage Pet Patients
         </button>
-        <button className="action-btn">📝 Create Pateint Message</button>
+        <button className="action-btn">📝 Create Patient Message</button>
         <button className="action-btn" onClick={() => navigate("/coming-soon")}>
           📋 View Medical Records
         </button>
