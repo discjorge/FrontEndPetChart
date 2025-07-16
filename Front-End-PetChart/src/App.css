@@ -114,7 +114,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
   margin: 0 auto;
   height: 60px;
 }
@@ -141,12 +140,13 @@ body {
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: #ff9800;
   border-radius: 4px;
+  color: #ffffff;
 }
 
 .logout-button {
-  color: #ffdddd;
+  color: #ffffff;
 }
 
 .logo-img {

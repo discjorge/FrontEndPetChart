@@ -23,6 +23,11 @@ export default function VetMessageByUser() {
 
         const data = await res.json();
         setMessages(data);
+        
+        // Extract owner name from the first message if available
+        if (data.length > 0 && data[0].owner_name) {
+          setOwnerName(data[0].owner_name);
+        }
 
       } catch (err) {
         console.error("Couldn't fetch messages", err);
@@ -38,7 +43,7 @@ export default function VetMessageByUser() {
     e.preventDefault();
 
     try {
-      const res = await fetch("/api/messages/vet", {
+      const res = await fetch("messages/vet", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -67,8 +72,8 @@ export default function VetMessageByUser() {
         {messages.map((msg) => (
           <MessageBubble
             key={msg.id}
-            msg={msg}
-            isSentByVet={msg.vet_id === user.id}
+            message={msg}
+            isSentByCurrentUser={msg.vet_id === user.id}
           />
         ))}
       </div>

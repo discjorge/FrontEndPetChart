@@ -1,5 +1,3 @@
-
-=======
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./Components/AuthContent.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
