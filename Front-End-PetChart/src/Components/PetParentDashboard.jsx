@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
-import { useAuth } from "./AuthContent.jsx";
-import { useNavigate } from "react-router-dom";
-import defaultImg from "../assets/Images/default.png";
-import PetFunFact from "./PetFunFact.jsx";
-import PetOfTheDay from "./PetOfTheDay.jsx";
-import UpcomingAppointments from "./UpcomingAppointments.jsx";
-import Messages from "./Messages.jsx";
-import MyVet from "./MyVet.jsx";
-import "../styles/Dashboard.css";
+import { useState, useEffect } from 'react';
+import { useAuth } from './AuthContent.jsx';
+import { useNavigate } from 'react-router-dom';
+import defaultImg from '../assets/Images/default.png';
+import PetFunFact from './PetFunFact.jsx';
+import PetOfTheDay from './PetOfTheDay.jsx';
+import UpcomingAppointments from './UpcomingAppointments.jsx';
+import Messages from './Messages.jsx';
+import MyVet from './MyVet.jsx';
+import '../styles/Dashboard.css';
+import UserMessages from "./messages/UserMessages.jsx";
+import UserCreateMessage from "./messages/UserCreateMessage.jsx"
 
 const PetParentDashboard = () => {
   const { user } = useAuth();
@@ -107,6 +109,7 @@ const PetParentDashboard = () => {
         <MyVet />
 
         <PetOfTheDay />
+        
       </div>
     </div>
   );

@@ -1,0 +1,43 @@
+.message-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f3f6;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.user-messages-container {
+  background-color: white;
+  width: 100%;
+  max-width: 700px;
+  height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.messages-thread {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.empty-message {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+  margin-top: 20px;
+}
