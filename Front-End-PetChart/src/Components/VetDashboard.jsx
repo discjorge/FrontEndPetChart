@@ -1,5 +1,3 @@
-
-=======
 import { useState, useEffect } from "react";
 import { useAuth } from "./AuthContent.jsx";
 import { useNavigate } from "react-router-dom";
@@ -62,6 +60,8 @@ const VeterinarianDashboard = () => {
         >
           🐾 Manage Pet Patients
         </button>
+
+        <button className="action-btn">📝 Create Patient Message</button>=======
         <button className="action-btn" onClick={() => navigate("/dashboard/veterinarian/messages")}>💬 Patient Messages</button>
         <button className="action-btn" onClick={() => navigate("/coming-soon")}>
           📋 View Medical Records

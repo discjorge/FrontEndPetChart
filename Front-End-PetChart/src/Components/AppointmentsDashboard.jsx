@@ -7,10 +7,11 @@ const AppointmentsDashboard = () => {
   const { user, token, logout } = useAuth();
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState([]);
+  const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [form, setForm] = useState({
-    vet_id: "",
+    user_id: "",
     time: "",
     appointment_reason: "",
   });
@@ -18,6 +19,9 @@ const AppointmentsDashboard = () => {
   useEffect(() => {
     if (user && token) {
       fetchAppointments();
+      if (user.userType === "veterinarian") {
+        fetchPatients();
+      }
     }
   }, [user, token]);
 
@@ -31,8 +35,6 @@ const AppointmentsDashboard = () => {
         user.userType === "veterinarian"
           ? `http://localhost:3000/appointments/vets/${id}`
           : `http://localhost:3000/appointments/user/${id}`;
-
-      console.log("Fetching appointments from:", endpoint);
 
       const response = await fetch(endpoint, {
         headers: {
@@ -49,7 +51,6 @@ const AppointmentsDashboard = () => {
 
       const data = await response.json();
       if (!Array.isArray(data)) {
-        console.warn("Expected array but got:", data);
         setError("Unexpected data format.");
         return;
       }
@@ -64,6 +65,27 @@ const AppointmentsDashboard = () => {
     }
   };
 
+  const fetchPatients = async () => {
+    try {
+      const vetId = user.id || user.vet_id;
+      const response = await fetch(
+        `http://localhost:3000/appointments/vets/${vetId}/patients`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to fetch patients");
+      const data = await response.json();
+      setPatients(data || []);
+    } catch (err) {
+      console.error("Error fetching patients:", err);
+    }
+  };
+
   const handleAddAppointment = async (e) => {
     e.preventDefault();
     try {
@@ -74,8 +96,8 @@ const AppointmentsDashboard = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_id: user.id || user.user_id || user.userId,
-          vet_id: parseInt(form.vet_id),
+          user_id: parseInt(form.user_id),
+          vet_id: user.id || user.vet_id,
           time: form.time,
           appointment_reason: form.appointment_reason,
         }),
@@ -83,7 +105,7 @@ const AppointmentsDashboard = () => {
 
       if (!response.ok) throw new Error("Failed to add appointment");
       await fetchAppointments();
-      setForm({ vet_id: "", time: "", appointment_reason: "" });
+      setForm({ user_id: "", time: "", appointment_reason: "" });
     } catch (err) {
       console.error("Error adding appointment:", err);
     }
@@ -113,21 +135,38 @@ const AppointmentsDashboard = () => {
   return (
     <div className="dashboard-card">
       <header className="dashboard-header">
-        <h1>Appointments</h1>
-        <button onClick={handleLogout} className="logout-btn">
-          Logout
-        </button>
+        <h1>
+          Appointments for Dr. {user?.first_name} {user?.last_name}
+        </h1>
       </header>
+
+      <div className="vet-quick-actions-banner">
+        <button
+          className="action-btn"
+          onClick={() => navigate("/manage-patients")}
+        >
+          🐾 Manage Pet Patients
+        </button>
+        <button className="action-btn">📝 Create Patient Message</button>
+        <button className="action-btn" onClick={() => navigate("/coming-soon")}>
+          📋 View Medical Records
+        </button>
+      </div>
 
       {user.userType === "veterinarian" && (
         <form className="appointment-form" onSubmit={handleAddAppointment}>
-          <input
-            type="number"
-            placeholder="Vet ID"
-            value={form.vet_id}
-            onChange={(e) => setForm({ ...form, vet_id: e.target.value })}
+          <select
+            value={form.user_id}
+            onChange={(e) => setForm({ ...form, user_id: e.target.value })}
             required
-          />
+          >
+            <option value="">Select Patient</option>
+            {patients.map((patient) => (
+              <option key={patient.user_id} value={patient.user_id}>
+                {patient.pet_name} (ID: {patient.user_id})
+              </option>
+            ))}
+          </select>
           <input
             type="datetime-local"
             value={form.time}
@@ -143,7 +182,9 @@ const AppointmentsDashboard = () => {
             }
             required
           />
-          <button type="submit">Add Appointment</button>
+          <button className="appointment-button" type="submit">
+            Add Appointment
+          </button>
         </form>
       )}
 
@@ -163,15 +204,18 @@ const AppointmentsDashboard = () => {
               <p>
                 <strong>Reason:</strong> {appt.appointment_reason}
               </p>
+
               <p>
-                <strong>Vet ID:</strong> {appt.vet_id}
+                <strong>Patient:</strong>{" "}
+                {patients.find((p) => p.user_id === appt.user_id)?.pet_name ||
+                  `ID: ${appt.user_id}`}
               </p>
               {user.userType === "veterinarian" && (
                 <button
                   onClick={() => handleDeleteAppointment(appt.id)}
-                  className="delete-btn"
+                  className="delete-btn appointment-button"
                 >
-                  Remove
+                  Remove Appointment
                 </button>
               )}
             </div>
