@@ -9,7 +9,7 @@ import Messages from './Messages.jsx';
 import MyVet from './MyVet.jsx';
 import '../styles/Dashboard.css';
 import UserMessages from "./messages/UserMessages.jsx";
-import UserCreateMessage from "./messages/UserCreateMessage.jsx"
+
 
 const PetParentDashboard = () => {
   const { user } = useAuth();
@@ -70,7 +70,7 @@ const PetParentDashboard = () => {
       
       <div className="quick-actions-banner">
         <button className="action-btn">📅 Schedule Appointment</button>
-        <button className="action-btn" onClick={()=> navigate("messages")}>💬 Message Your Vet</button>
+        <button className="action-btn" onClick={()=> navigate("/dashboard/pet-parent/messages")}>💬 Message Your Vet</button>
         <button className="action-btn" onClick={() => navigate('/coming-soon')}>📋 View Medical Records</button>
       </div>
       

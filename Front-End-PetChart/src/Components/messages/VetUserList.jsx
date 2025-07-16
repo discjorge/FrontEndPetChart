@@ -11,7 +11,7 @@ export default function VetUserList() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("/api/messages/vet/users", {
+        const res = await fetch("/messages/vet/users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
