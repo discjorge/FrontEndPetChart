@@ -65,7 +65,7 @@ const VeterinarianDashboard = () => {
           className="action-btn"
           onClick={() => navigate("/appointments-dashboard")}
         >
-          📆 View Appointments
+          📆 Manage Appointments
         </button>
       </div>
 
