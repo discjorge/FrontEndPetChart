@@ -39,7 +39,7 @@ export default function UserCreateMessage() {
     if (!note || !vetId) return;
 
     try {
-      const res = await fetch("/api/messages", {
+      const res = await fetch("/messages", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -1,5 +1,3 @@
-
-=======
 import { useState, useEffect } from "react";
 import { useAuth } from "./AuthContent.jsx";
 import { useNavigate } from "react-router-dom";
@@ -90,10 +88,6 @@ const VeterinarianDashboard = () => {
               <p>
                 <strong>Email:</strong> {dashboardData.email}
               </p>
-              <p>
-                <strong>Profile:</strong>{" "}
-                {dashboardData.profile_image_url ? "Uploaded" : "Not set"}
-              </p>
             </div>
           )}
         </div>
@@ -101,10 +95,6 @@ const VeterinarianDashboard = () => {
         <UpcomingAppointments />
 
         <Messages />
-        
-        <PetFunFact />
-        
-        <PetOfTheDay />
 
         <VetNews />
 
