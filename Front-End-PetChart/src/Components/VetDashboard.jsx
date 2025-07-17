@@ -53,7 +53,7 @@ const VeterinarianDashboard = () => {
 
       <div className="vet-quick-actions-banner">
         <button className="action-btn" onClick={() => navigate("/manage-patients")}>🐾 Manage Pet Patients</button>
-        <button className="action-btn">📝 Create Patient Message</button>
+        {/* <button className="action-btn">📝 Create Patient Message</button> */}
         <button className="action-btn" onClick={() => navigate("/dashboard/veterinarian/messages")}>💬 Patient Messages</button>
 
         <button className="action-btn" onClick={() => navigate("/coming-soon")}>📋 View Medical Records</button>
