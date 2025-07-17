@@ -11,6 +11,7 @@ import '../styles/Dashboard.css';
 import UserMessages from "./messages/UserMessages.jsx";
 
 
+
 const PetParentDashboard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -24,8 +25,6 @@ const PetParentDashboard = () => {
   const loadDashboardData = async (retryCount = 0) => {
     try {
       const token = localStorage.getItem('token');
-      console.log('Loading dashboard data with token:', token ? 'Token exists' : 'No token');
-      console.log('Current user from auth context:', user);
       
       const response = await fetch('/users/account', {
         headers: {
@@ -33,10 +32,7 @@ const PetParentDashboard = () => {
           'Content-Type': 'application/json'
         }
       });
-      
-      console.log('Account response status:', response.status);
-      console.log('Account response URL:', response.url);
-      
+            
       if (response.ok) {
         const data = await response.json();
         console.log('Account data received:', data);
@@ -58,7 +54,6 @@ const PetParentDashboard = () => {
       setLoading(false);
     }
   };
-
 
   if (loading) return <div>Loading...</div>;
 
@@ -82,7 +77,7 @@ const PetParentDashboard = () => {
               <img
                 src={
                   dashboardData.pet_image_url
-                    ? `http://localhost:3000${dashboardData.pet_image_url}`
+                    ? `${dashboardData.pet_image_url}`
                     : defaultImg
                 }
                 alt={`${dashboardData.pet_name}`}

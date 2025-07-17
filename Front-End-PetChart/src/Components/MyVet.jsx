@@ -36,7 +36,6 @@ const MyVet = () => {
       }
       
       const data = await response.json();
-      console.log('Vets data:', data);
       
       if (Array.isArray(data)) {
         setVets(data);
@@ -92,10 +91,6 @@ const MyVet = () => {
                 <h3 className="vet-name">Dr. {vet.first_name} {vet.last_name}</h3>
                 <p className="vet-email">{vet.email}</p>
               </div>
-              {/* <div className="vet-actions">
-                <button className="action-btn-small">💬 Message</button>
-                <button className="action-btn-small">📅 Schedule</button>
-              </div> */}
             </div>
           ))}
         </div>

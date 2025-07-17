@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "./AuthContent.jsx";
 import { useNavigate } from "react-router-dom";
-import PetFunFact from "./PetFunFact.jsx";
-import PetOfTheDay from "./PetOfTheDay.jsx";
 import UpcomingAppointments from "./UpcomingAppointments.jsx";
 import Messages from "./Messages.jsx";
 import VetNews from "./VetNews.jsx";
@@ -54,23 +52,11 @@ const VeterinarianDashboard = () => {
       </header>
 
       <div className="vet-quick-actions-banner">
-        <button
-          className="action-btn"
-          onClick={() => navigate("/manage-patients")}
-        >
-          🐾 Manage Pet Patients
-        </button>
+        <button className="action-btn" onClick={() => navigate("/manage-patients")}>🐾 Manage Pet Patients</button>
+        <button className="action-btn">📝 Create Patient Message</button>
         <button className="action-btn" onClick={() => navigate("/dashboard/veterinarian/messages")}>💬 Patient Messages</button>
-        <button className="action-btn" onClick={() => navigate("/coming-soon")}>
-          📋 View Medical Records
-        </button>
-        <button
-          className="action-btn"
-          onClick={() => navigate("/appointments-dashboard")}
-        >
-          📆 View Appointments
-        </button>
-
+        <button className="action-btn" onClick={() => navigate("/coming-soon")}>📋 View Medical Records</button>
+        <button className="action-btn" onClick={() => navigate("/appointments-dashboard")}>📆 View Appointments</button>
       </div>
 
       <div className="dashboard-content">

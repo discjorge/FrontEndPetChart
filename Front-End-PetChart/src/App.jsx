@@ -78,28 +78,20 @@ function App() {
             {/* Vet Messages */}
           <Route path="/dashboard/veterinarian/messages" element={
             <ProtectedRoute allowedUserTypes={['veterinarian']}>
-              <>
-                <NavBar />
                 <VetUserList />
-              </>
             </ProtectedRoute>
           } />
           <Route path="/dashboard/veterinarian/messages/:userID" element={
             <ProtectedRoute allowedUserTypes={['veterinarian']}>
-              <>
-                <NavBar />
                 <VetMessageByUser />
-              </>
             </ProtectedRoute>
           } />
 
-        
+
+          {/* User Messages */}
           <Route path="/dashboard/pet-parent/messages" element={
             <ProtectedRoute allowedUserTypes={['pet-parent']}>
-              <>
-                <NavBar />
                 <UserMessages />
-              </>
             </ProtectedRoute>
           } />
 
@@ -116,10 +108,7 @@ function App() {
             path="/appointments-dashboard"
             element={
               <ProtectedRoute allowedUserTypes={["veterinarian"]}>
-                <div>
-                  <NavBar />
                   <AppointmentsDashboard />
-                </div>
               </ProtectedRoute>
             }
           />
