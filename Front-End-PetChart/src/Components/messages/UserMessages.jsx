@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../AuthContent.jsx";
 import MessageBubble from "./MessageBubble.jsx";
 import "../../styles/PetParentMessages.css";
+import { useNavigate } from "react-router-dom";
 
 export default function UserMessages() {
   const { token, user } = useAuth();
   const [messages, setMessages] = useState([]);
   const [note, setNote] = useState("");
   const [vetId, setVetId] = useState(null);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -71,8 +73,15 @@ export default function UserMessages() {
     }
   };
 
+   const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="message-page">
+              <button onClick={handleGoBack} className="back-btn">
+          ← Back to Dashboard
+          </button>
       <div className="user-messages-container">
         <h2 className="chat-title">Your Messages</h2>
 
