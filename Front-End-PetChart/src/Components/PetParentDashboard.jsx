@@ -24,15 +24,28 @@ const PetParentDashboard = () => {
 
   const loadDashboardData = async (retryCount = 0) => {
     try {
+<<<<<<< HEAD
       const token = localStorage.getItem('token');
       
       const response = await fetch('/users/account', {
+=======
+
+
+      const token = localStorage.getItem('token');
+      
+      const response = await fetch('/users/account', {
+
+>>>>>>> 0d5b69a0fcd135fc1fc147fbc6063d1c666ab5b4
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 0d5b69a0fcd135fc1fc147fbc6063d1c666ab5b4
       if (response.ok) {
         const data = await response.json();
         console.log("Account data received:", data);
@@ -68,9 +81,17 @@ const PetParentDashboard = () => {
       </header>
 
       <div className="quick-actions-banner">
+<<<<<<< HEAD
         <button className="action-btn">📅 Schedule Appointment</button>
         <button className="action-btn" onClick={()=> navigate("/dashboard/pet-parent/messages")}>💬 Message Your Vet</button>
         <button className="action-btn" onClick={() => navigate('/coming-soon')}>📋 View Medical Records</button>
+=======
+
+        <button className="action-btn">📅 Schedule Appointment</button>
+        <button className="action-btn" onClick={()=> navigate("/dashboard/pet-parent/messages")}>💬 Message Your Vet</button>
+        <button className="action-btn" onClick={() => navigate('/coming-soon')}>📋 View Medical Records</button>
+
+>>>>>>> 0d5b69a0fcd135fc1fc147fbc6063d1c666ab5b4
       </div>
 
       <div className="dashboard-content">
