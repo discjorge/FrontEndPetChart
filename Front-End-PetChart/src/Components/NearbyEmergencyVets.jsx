@@ -85,37 +85,20 @@ const NearbyEmergencyVets = () => {
             {emergencyVets.map((vet, index) => (
               <div key={index} className="news-item">
                 <div className="news-title">
-                  <span className="news-link" style={{ cursor: 'default', textDecoration: 'none' }}>
+                  <span className="news-link emergency-vet-title">
                     {vet.display_name.split(',')[0]}
                   </span>
                 </div>
                 <div className="news-description">
                   {vet.display_name.split(',').slice(1, 3).join(', ')}
                 </div>
-                <div className="news-date" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="news-date emergency-vet-date">
                   <span>24/7 Emergency Care</span>
                   <a 
                     href={getDirectionsUrl(vet.lat, vet.lon, vet.display_name)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      color: '#ffeaa7',
-                      textDecoration: 'none',
-                      fontSize: '0.8rem',
-                      padding: '4px 8px',
-                      borderRadius: '12px',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseOver={(e) => {
-                      e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                      e.target.style.color = 'white';
-                    }}
-                    onMouseOut={(e) => {
-                      e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                      e.target.style.color = '#ffeaa7';
-                    }}
+                    className="emergency-vet-link"
                   >
                     Get Directions
                   </a>

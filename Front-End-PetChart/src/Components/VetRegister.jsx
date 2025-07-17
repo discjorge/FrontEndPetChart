@@ -30,14 +30,12 @@ export default function VetRegister() {
       if (value) formData.append(key, value);
     });
     try {
-      console.log('Sending form data:', Object.fromEntries(formData));
       
       const res = await fetch('/vets/register', {
         method: 'POST',
         body: formData,
       });
       
-      console.log('Response status:', res.status);
       
       if (!res.ok) {
         const errorText = await res.text();
@@ -73,19 +71,19 @@ export default function VetRegister() {
     <div className="vetregister-page-box">
       <form className="vetregister-form" onSubmit={handleSubmit}>
         <div className="vetregister-field">
-          <label htmlFor="first_name">First Name</label>
+          <label htmlFor="first_name">First Name*</label>
           <input type="text" id="first_name" name="first_name" value={form.first_name} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
-          <label htmlFor="last_name">Last Name</label>
+          <label htmlFor="last_name">Last Name*</label>
           <input type="text" id="last_name" name="last_name" value={form.last_name} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">Email Address*</label>
           <input type="email" id="email" name="email" value={form.email} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password*</label>
           <input type="password" id="password" name="password" value={form.password} onChange={handleChange} required />
         </div>
         <div className="vetregister-field">

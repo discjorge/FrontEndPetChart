@@ -117,7 +117,34 @@
   color: white;
 }
 
-/* Responsive design */
+/* Emergency Vets specific styles */
+.emergency-vet-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emergency-vet-link {
+  color: #ffeaa7;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.emergency-vet-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.emergency-vet-title {
+  cursor: default;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .vet-news-card {
     padding: 15px;

@@ -9,15 +9,10 @@ const Messages = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    console.log('Messages component - useEffect triggered');
-    console.log('Messages component - User exists:', !!user);
-    console.log('Messages component - Token exists:', !!token);
     
     if (user && token) {
-      console.log('Messages component - Calling fetchMessages');
       fetchMessages();
     } else {
-      console.log('Messages component - User or token missing, not fetching');
     }
   }, [user, token]);
 
@@ -26,15 +21,9 @@ const Messages = () => {
       setLoading(true);
       setError('');
       
-      console.log('Messages component - User:', user);
-      console.log('Messages component - Token:', token);
-      console.log('Messages component - User type:', user?.userType);
-      
       const endpoint = user.userType === 'veterinarian' 
         ? '/messages/vet' 
         : '/messages/user';
-      
-      console.log('Messages component - Fetching from endpoint:', endpoint);
       
       const response = await fetch(endpoint, {
         headers: {
@@ -42,10 +31,7 @@ const Messages = () => {
           'Content-Type': 'application/json'
         }
       });
-      
-      console.log('Messages component - Response status:', response.status);
-      console.log('Messages component - Response ok:', response.ok);
-      
+            
       if (!response.ok) {
         let errorData;
         try {
@@ -54,9 +40,6 @@ const Messages = () => {
           errorData = await response.text();
         }
         
-        console.error('Messages component - Error response:', errorData);
-        
-        // Handle the specific case where backend returns 404 with "no messages" message
         if (response.status === 404 && 
             (errorData.message?.includes('no messages') || 
              errorData.includes('no messages') ||
@@ -70,9 +53,7 @@ const Messages = () => {
       }
       
       const data = await response.json();
-      console.log('Messages component - Response data:', data);
-      
-      // Handle different possible response structures
+
       let messagesArray = [];
       
       if (data.messages && Array.isArray(data.messages)) {
@@ -85,7 +66,6 @@ const Messages = () => {
         messagesArray = data.message;
       }
       
-      console.log('Messages component - Extracted messages array:', messagesArray);
       setMessages(messagesArray);
     } catch (err) {
       console.error('Error fetching messages:', err);
@@ -138,9 +118,6 @@ const Messages = () => {
                 <div className="message-preview">
                   {truncateText(message.note || message.content || message.body || message.message || message.text || 'No content')}
                 </div>
-                {/* {!message.seen && (
-                  <div className="unread-indicator">●</div>
-                )} */}
               </div>
             );
           })}

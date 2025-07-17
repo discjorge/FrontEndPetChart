@@ -9,7 +9,8 @@ import Messages from './Messages.jsx';
 import MyVet from './MyVet.jsx';
 import '../styles/Dashboard.css';
 import UserMessages from "./messages/UserMessages.jsx";
-import UserCreateMessage from "./messages/UserCreateMessage.jsx"
+
+
 
 const PetParentDashboard = () => {
   const { user } = useAuth();
@@ -23,22 +24,17 @@ const PetParentDashboard = () => {
 
   const loadDashboardData = async (retryCount = 0) => {
     try {
-      const token = localStorage.getItem("token");
-      console.log(
-        "Loading dashboard data with token:",
-        token ? "Token exists" : "No token"
-      );
-      console.log("Current user from auth context:", user);
 
-      const response = await fetch("/users/account", {
+
+      const token = localStorage.getItem('token');
+      
+      const response = await fetch('/users/account', {
+
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
-
-      console.log("Account response status:", response.status);
-      console.log("Account response URL:", response.url);
 
       if (response.ok) {
         const data = await response.json();
@@ -75,10 +71,11 @@ const PetParentDashboard = () => {
       </header>
 
       <div className="quick-actions-banner">
-        <button className="action-btn">💬 Message Your Vet</button>
-        <button className="action-btn" onClick={() => navigate("/coming-soon")}>
-          📋 View Medical Records
-        </button>
+
+        <button className="action-btn">📅 Schedule Appointment</button>
+        <button className="action-btn" onClick={()=> navigate("/dashboard/pet-parent/messages")}>💬 Message Your Vet</button>
+        <button className="action-btn" onClick={() => navigate('/coming-soon')}>📋 View Medical Records</button>
+
       </div>
 
       <div className="dashboard-content">
@@ -89,7 +86,7 @@ const PetParentDashboard = () => {
               <img
                 src={
                   dashboardData.pet_image_url
-                    ? `http://localhost:3000${dashboardData.pet_image_url}`
+                    ? `${dashboardData.pet_image_url}`
                     : defaultImg
                 }
                 alt={`${dashboardData.pet_name}`}
