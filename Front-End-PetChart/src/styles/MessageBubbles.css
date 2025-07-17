@@ -9,7 +9,7 @@
 }
 
 .sent {
-  background-color: #d1ffd6; /* Green */
+  background-color: #d1ffd6;
   color: black;
   align-self: flex-end;
   margin-left: auto;
@@ -17,7 +17,7 @@
 }
 
 .received {
-  background-color: #eaeaea; /* Gray */
+  background-color: #eaeaea;
   color:black;
   align-self: flex-start;
   margin-right: auto;

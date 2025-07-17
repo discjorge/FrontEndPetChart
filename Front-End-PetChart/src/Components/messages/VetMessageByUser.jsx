@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../AuthContent.jsx";
 import MessageBubble from "./MessageBubble.jsx";
 import "../../styles/VetMessages.css";
+import { useNavigate } from "react-router-dom";
 
 export default function VetMessageByUser() {
   const { userID } = useParams();
   const { token } = useAuth();
-
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [ownerName, setOwnerName] = useState("");
@@ -70,10 +71,16 @@ export default function VetMessageByUser() {
     }
   };
 
+   const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="message-container">
       <h2>Messages with {ownerName}</h2>
-
+              <button onClick={handleGoBack} className="back-btn">
+          ← Back to Dashboard
+          </button>
       <div className="message-thread">
         {messages.length === 0 ? (
           <p>You have no messages with this user.</p>
