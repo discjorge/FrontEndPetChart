@@ -40,9 +40,7 @@ export default function PetParentRegister() {
         body: formData,
         
       });
-      
-      console.log('Response status:', res.status);
-      
+            
       if (!res.ok) {
         const errorText = await res.text();
         console.error('Server error response:', errorText);
@@ -80,31 +78,31 @@ export default function PetParentRegister() {
     <div className="petparentregister-page-box">
       <form className="petparentregister-form" onSubmit={handleSubmit}>
         <div className="petparentregister-field">
-          <label htmlFor="owner_name">Full Name</label>
+          <label htmlFor="owner_name">Full Name*</label>
           <input type="text" id="owner_name" name="owner_name" value={form.owner_name} onChange={handleChange} required />
         </div>
         <div className="petparentregister-field">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">Email Address*</label>
           <input type="email" id="email" name="email" value={form.email} onChange={handleChange} required />
         </div>
         <div className="petparentregister-field">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password*</label>
           <input type="password" id="password" name="password" value={form.password} onChange={handleChange} required />
         </div>
         <div className="petparentregister-field">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">Address*</label>
           <input type="text" id="address" name="address" value={form.address} onChange={handleChange} required />
         </div>
         <div className="petparentregister-field">
-          <label htmlFor="pet_name">Pet's Name</label>
+          <label htmlFor="pet_name">Pet's Name*</label>
           <input type="text" id="pet_name" name="pet_name" value={form.pet_name} onChange={handleChange} required />
         </div>
         <div className="petparentregister-field">
-          <label htmlFor="animal">Species</label>
+          <label htmlFor="animal">Species*</label>
           <input type="text" id="animal" name="animal" value={form.animal} onChange={handleChange} required />
         </div>
         <div className="petparentregister-field">
-          <label htmlFor="breed">Breed</label>
+          <label htmlFor="breed">Breed*</label>
           <input type="text" id="breed" name="breed" value={form.breed} onChange={handleChange} required />
         </div>
         <div className="petparentregister-field">

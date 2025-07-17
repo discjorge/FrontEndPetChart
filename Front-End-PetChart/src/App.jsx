@@ -14,8 +14,7 @@ import ComingSoon from "./Components/ComingSoon.jsx";
 import ManagePatients from "./Components/ManagePatients.jsx";
 import AppointmentsDashboard from "./Components/AppointmentsDashboard.jsx";
 import VetUserList from './Components/messages/VetUserList.jsx';
-import VetMessageByUser from './Components/messages/VetMessagebyUser.jsx';
-import UserCreateMessage from './Components/messages/UserCreateMessage.jsx';
+import VetMessageByUser from "./Components/messages/VetMessageByUser.jsx";
 import UserMessages from './Components/messages/UserMessages.jsx';
 import "./App.css";
 
@@ -79,36 +78,20 @@ function App() {
             {/* Vet Messages */}
           <Route path="/dashboard/veterinarian/messages" element={
             <ProtectedRoute allowedUserTypes={['veterinarian']}>
-              <>
-                <NavBar />
                 <VetUserList />
-              </>
             </ProtectedRoute>
           } />
           <Route path="/dashboard/veterinarian/messages/:userID" element={
             <ProtectedRoute allowedUserTypes={['veterinarian']}>
-              <>
-                <NavBar />
                 <VetMessageByUser />
-              </>
             </ProtectedRoute>
           } />
 
+
           {/* User Messages */}
-          <Route path="dashboard/pet-parent/messages/" element={
+          <Route path="/dashboard/pet-parent/messages" element={
             <ProtectedRoute allowedUserTypes={['pet-parent']}>
-              <>
-                <NavBar />
-                <UserCreateMessage />
-              </>
-            </ProtectedRoute>
-          } />
-          <Route path="/messages" element={
-            <ProtectedRoute allowedUserTypes={['pet-parent']}>
-              <>
-                <NavBar />
                 <UserMessages />
-              </>
             </ProtectedRoute>
           } />
 
@@ -125,10 +108,7 @@ function App() {
             path="/appointments-dashboard"
             element={
               <ProtectedRoute allowedUserTypes={["veterinarian"]}>
-                <div>
-                  <NavBar />
                   <AppointmentsDashboard />
-                </div>
               </ProtectedRoute>
             }
           />
