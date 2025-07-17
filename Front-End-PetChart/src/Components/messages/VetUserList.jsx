@@ -30,9 +30,16 @@ export default function VetUserList() {
     navigate(`/dashboard/veterinarian/messages/${userId}`);
   };
 
+     const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="vet-user-list">
       <h2>Welcome to the Message Center</h2>
+      <button onClick={handleGoBack} className="back-btn">
+          ← Back to Dashboard
+          </button>
 
       {users.length === 0 ? (
         <p>You have no messages.</p>

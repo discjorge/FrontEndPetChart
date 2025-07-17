@@ -79,7 +79,7 @@ export default function VetMessageByUser() {
     <div className="message-container">
       <h2>Messages with {ownerName}</h2>
               <button onClick={handleGoBack} className="back-btn">
-          ← Back to Dashboard
+          ← Back to Message Center
           </button>
       <div className="message-thread">
         {messages.length === 0 ? (
