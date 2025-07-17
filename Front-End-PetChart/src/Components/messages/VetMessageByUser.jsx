@@ -1,49 +1,57 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useAuth } from "../AuthContent.jsx";
 import MessageBubble from "./MessageBubble.jsx";
 import "../../styles/VetMessages.css";
 
 export default function VetMessageByUser() {
   const { userID } = useParams();
-  const { token, user } = useAuth();
+  const { token } = useAuth();
+
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [ownerName, setOwnerName] = useState("");
 
+  //Get Messages and set it to state
   useEffect(() => {
-    const fetchMessages = async () => {
+    async function fetchMessages() {
       try {
-        const res = await fetch(`/api/messages/vet/user/${userID}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        const res = await fetch(`/messages/vet/user/${userID}`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
-        if (!res.ok) throw new Error("Failed to fetch messages");
-
         const data = await res.json();
         setMessages(data);
-        
-        // Extract owner name from the first message if available
-        if (data.length > 0 && data[0].owner_name) {
-          setOwnerName(data[0].owner_name);
-        }
-
-      } catch (err) {
-        console.error("Couldn't fetch messages", err);
+      } catch (error) {
+        console.error("Couldn't fetch messages", error);
       }
-    };
-
-    if (token && userID) {
-      fetchMessages();
     }
+
+    fetchMessages();
   }, [token, userID]);
 
+  // Get owner name to display at top and set to state
+  useEffect(() => {
+    async function fetchOwnerName() {
+      try {
+        const res = await fetch(`/users/${userID}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const petOwner = await res.json();
+        setOwnerName(petOwner.owner_name);
+      } catch (error) {
+        console.error("Couldn't fetch owner name", error);
+      }
+    }
+
+    fetchOwnerName();
+  }, [token, userID]);
+
+  // submit handler to POST message and add the message to messages state to display right
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("messages/vet", {
+      const res = await fetch("/messages/vet", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -54,10 +62,8 @@ export default function VetMessageByUser() {
           note: newMessage,
         }),
       });
-
-
       const postedMessage = await res.json();
-      setMessages([postedMessage, ...messages]);
+      setMessages((prev) => [...prev, postedMessage]);
       setNewMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
@@ -69,13 +75,17 @@ export default function VetMessageByUser() {
       <h2>Messages with {ownerName}</h2>
 
       <div className="message-thread">
-        {messages.map((msg) => (
-          <MessageBubble
-            key={msg.id}
-            message={msg}
-            isSentByCurrentUser={msg.vet_id === user.id}
-          />
-        ))}
+        {messages.length === 0 ? (
+          <p>You have no messages with this user.</p>
+        ) : (
+          messages.map((msg) => (
+            <MessageBubble
+              key={msg.id}
+              message={msg}
+              isSentByCurrentUser={msg.sender === "vet"}
+            />
+          ))
+        )}
       </div>
 
       <form className="message-form" onSubmit={handleSubmit}>
@@ -84,8 +94,11 @@ export default function VetMessageByUser() {
           placeholder="Type your message..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
+          required
         />
-        <button type="submit">Send</button>
+        <button type="submit" disabled={!newMessage}>
+          Send
+        </button>
       </form>
     </div>
   );

@@ -14,8 +14,7 @@ import ComingSoon from "./Components/ComingSoon.jsx";
 import ManagePatients from "./Components/ManagePatients.jsx";
 import AppointmentsDashboard from "./Components/AppointmentsDashboard.jsx";
 import VetUserList from './Components/messages/VetUserList.jsx';
-import VetMessageByUser from './Components/messages/VetMessagebyUser.jsx';
-import UserCreateMessage from './Components/messages/UserCreateMessage.jsx';
+import VetMessageByUser from "./Components/messages/VetMessageByUser.jsx";
 import UserMessages from './Components/messages/UserMessages.jsx';
 import "./App.css";
 
@@ -88,13 +87,9 @@ function App() {
             </ProtectedRoute>
           } />
 
+
           {/* User Messages */}
-          <Route path="dashboard/pet-parent/messages/" element={
-            <ProtectedRoute allowedUserTypes={['pet-parent']}>
-                <UserCreateMessage />
-            </ProtectedRoute>
-          } />
-          <Route path="/messages" element={
+          <Route path="/dashboard/pet-parent/messages" element={
             <ProtectedRoute allowedUserTypes={['pet-parent']}>
                 <UserMessages />
             </ProtectedRoute>

@@ -7,7 +7,7 @@ import VetNews from "./VetNews.jsx";
 import NearbyEmergencyVets from "./NearbyEmergencyVets.jsx";
 import "../styles/Dashboard.css";
 import VetUserList from "./messages/VetUserList.jsx";
-import VetMessageByUser from './messages/VetMessagebyUser.jsx';
+import VetMessageByUser from './messages/VetMessageByUser.jsx';
 
 
 const VeterinarianDashboard = () => {
@@ -57,7 +57,6 @@ const VeterinarianDashboard = () => {
         <button className="action-btn" onClick={() => navigate("/dashboard/veterinarian/messages")}>💬 Patient Messages</button>
         <button className="action-btn" onClick={() => navigate("/coming-soon")}>📋 View Medical Records</button>
         <button className="action-btn" onClick={() => navigate("/appointments-dashboard")}>📆 View Appointments</button>
-
       </div>
 
       <div className="dashboard-content">
