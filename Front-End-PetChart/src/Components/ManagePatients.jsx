@@ -21,20 +21,11 @@ const ManagePatients = () => {
     try {
       setLoading(true);
       setError('');
-      
-      console.log('Fetching patients for user:', user);
-      console.log('User ID:', user.id);
-      console.log('User object keys:', Object.keys(user));
-      console.log('Full user object:', JSON.stringify(user, null, 2));
-      
-      // For veterinarians, we need the vet_id specifically
-      const vetId = user.vet_id || user.id || user.user_id || user._id;
-      console.log('Using vet ID:', vetId);
-      
+    
+      // For veterinarians, we need the vet_id specifically otherwise it'll pull user.id
+      const vetId = user.vet_id || user.id || user.user_id || user._id;      
 
       const url = `/appointments/vets/${vetId}/patients`;
-      console.log('Making request to:', url);
-      console.log('Full URL would be:', window.location.origin + url);
       
       const response = await fetch(url, {
         headers: {
@@ -42,12 +33,7 @@ const ManagePatients = () => {
           'Content-Type': 'application/json'
         }
       });
-      
-      console.log('Response status:', response.status);
-      console.log('Response URL:', response.url);
-      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
-      
-      // Accept both 200 (OK) and 304 (Not Modified) as successful responses
+           
       if (!response.ok && response.status !== 304) {
         const errorText = await response.text();
         console.error('Response error:', errorText);
@@ -55,7 +41,6 @@ const ManagePatients = () => {
       }
       
       const data = await response.json();
-      console.log('Patients data:', data);
       
       if (Array.isArray(data)) {
         setPatients(data);
