@@ -10,6 +10,7 @@ const AppointmentsDashboard = () => {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [users, setUsers] = useState([]);
   const [form, setForm] = useState({
     user_id: "",
     time: "",
@@ -20,7 +21,7 @@ const AppointmentsDashboard = () => {
     if (user && token) {
       fetchAppointments();
       if (user.userType === "veterinarian") {
-        fetchPatients();
+        fetchUsers();
       }
     }
   }, [user, token]);
@@ -67,27 +68,45 @@ const AppointmentsDashboard = () => {
     }
   };
 
-  const fetchPatients = async () => {
-    try {
-      const vetId = user.id || user.vet_id;
+  // const fetchPatients = async () => {
+  //   try {
+  //     const vetId = user.id || user.vet_id;
+  //     const response = await fetch(
+  //       `/appointments/vets/${vetId}/patients`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     if (!response.ok) throw new Error("Failed to fetch patients");
+  //     const data = await response.json();
+  //     setPatients(data || []);
+  //   } catch (err) {
+  //     console.error("Error fetching patients:", err);
+  //   }
+  // };
+  const fetchUsers = async () => {
+    try{
       const response = await fetch(
-        `/appointments/vets/${vetId}/patients`,
-        {
+        `/users`, {
+          method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
-      );
-
-      if (!response.ok) throw new Error("Failed to fetch patients");
+      )
       const data = await response.json();
-      setPatients(data || []);
-    } catch (err) {
-      console.error("Error fetching patients:", err);
+      setUsers(data || [])
+    } catch (err){
+        console.error("whhops", err)
     }
-  };
+  }
 
+  
   const handleAddAppointment = async (e) => {
     e.preventDefault();
     try {
@@ -163,9 +182,9 @@ const AppointmentsDashboard = () => {
                   required
                 >
                   <option value="">Choose a patient...</option>
-                  {patients.map((patient) => (
-                    <option key={patient.user_id} value={patient.user_id}>
-                      {patient.pet_name} (Owner: {patient.owner_name})
+                  {users.map((u) => (
+                    <option key={u.id || u.user_id} value={u.id || u.user_id}>
+                      {u.pet_name} (Owner: {u.owner_name})
                     </option>
                   ))}
                 </select>
