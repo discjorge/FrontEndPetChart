@@ -99,7 +99,7 @@ const ManagePatients = () => {
               </div>
               <div className="patient-actions">
                 <button className="action-btn-small" onClick={() => navigate('/coming-soon')}>📋 View Records</button>
-                <button className="action-btn-small">💬 Message</button>
+                <button className="action-btn-small" onClick={() => navigate(`/dashboard/veterinarian/messages/${patient.user_id}`)}>💬 Message</button>
               </div>
             </div>
           ))}
