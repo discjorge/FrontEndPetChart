@@ -88,21 +88,24 @@ const AppointmentsDashboard = () => {
   //   }
   // };
   const fetchUsers = async () => {
-    try {
-      const response = await fetch(`/users`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+    try{
+      const response = await fetch(
+        `/users`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
       const data = await response.json();
-      setUsers(data || []);
-    } catch (err) {
-      console.error("whhops", err);
+      setUsers(data || [])
+    } catch (err){
+        console.error("whhops", err)
     }
-  };
+  }
 
+  
   const handleAddAppointment = async (e) => {
     e.preventDefault();
     try {
