@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from './AuthContent.jsx';
-import '../styles/Dashboard.css';
+import { useState, useEffect } from "react";
+import { useAuth } from "./AuthContent.jsx";
+import "../styles/Dashboard.css";
 
 const Messages = () => {
   const { user, token } = useAuth();
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    
     if (user && token) {
       fetchMessages();
     } else {
@@ -19,19 +18,18 @@ const Messages = () => {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      setError('');
-      
-      const endpoint = user.userType === 'veterinarian' 
-        ? '/messages/vet' 
-        : '/messages/user';
-      
+      setError("");
+
+      const endpoint =
+        user.userType === "veterinarian" ? "/messages/vet" : "/messages/user";
+
       const response = await fetch(endpoint, {
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
-            
+
       if (!response.ok) {
         let errorData;
         try {
@@ -39,23 +37,29 @@ const Messages = () => {
         } catch {
           errorData = await response.text();
         }
-        
-        if (response.status === 404 && 
-            (errorData.message?.includes('no messages') || 
-             errorData.includes('no messages') ||
-             errorData.message?.includes('You have no messages yet'))) {
-          console.log('Messages component - No messages found, setting empty array');
+
+        if (
+          response.status === 404 &&
+          (errorData.message?.includes("no messages") ||
+            errorData.includes("no messages") ||
+            errorData.message?.includes("You have no messages yet"))
+        ) {
+          console.log(
+            "Messages component - No messages found, setting empty array"
+          );
           setMessages([]);
           return;
         }
-        
-        throw new Error(`Failed to fetch messages: ${response.status} ${response.statusText}`);
+
+        throw new Error(
+          `Failed to fetch messages: ${response.status} ${response.statusText}`
+        );
       }
-      
+
       const data = await response.json();
 
       let messagesArray = [];
-      
+
       if (data.messages && Array.isArray(data.messages)) {
         messagesArray = data.messages;
       } else if (Array.isArray(data)) {
@@ -65,11 +69,11 @@ const Messages = () => {
       } else if (data.message && Array.isArray(data.message)) {
         messagesArray = data.message;
       }
-      
+
       setMessages(messagesArray);
     } catch (err) {
-      console.error('Error fetching messages:', err);
-      setError('Unable to load messages');
+      console.error("Error fetching messages:", err);
+      setError("Unable to load messages");
       setMessages([]);
     } finally {
       setLoading(false);
@@ -78,17 +82,17 @@ const Messages = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   const truncateText = (text, maxLength = 100) => {
     if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + '...';
+    return text.substring(0, maxLength) + "...";
   };
 
   return (
@@ -101,22 +105,45 @@ const Messages = () => {
       ) : messages.length > 0 ? (
         <div className="messages-list">
           {messages.slice(0, 5).map((message, index) => {
-            console.log('Messages component - Rendering message:', message);
+            console.log("Messages component - Rendering message:", message);
             return (
               <div key={index} className="message-item">
                 <div className="message-header">
                   <span className="message-sender">
-                    {message.owner_name || `${message.first_name || ''} ${message.last_name || ''}`.trim() || message.senderName || message.from || message.sender || message.userName || `User ${message.user_id}`}
+                    {message.owner_name ||
+                      `${message.first_name || ""} ${
+                        message.last_name || ""
+                      }`.trim() ||
+                      message.senderName ||
+                      message.from ||
+                      message.sender ||
+                      message.userName ||
+                      `User ${message.user_id}`}
                   </span>
                   <span className="message-date">
-                    {formatDate(message.created_at || message.createdAt || message.date || message.timestamp || message.sentAt)}
+                    {formatDate(
+                      message.created_at ||
+                        message.createdAt ||
+                        message.date ||
+                        message.timestamp ||
+                        message.sentAt
+                    )}
                   </span>
                 </div>
                 <div className="message-subject">
-                  {message.pet_name ? `Pet Name: ${message.pet_name}` : 'Message from Vet'}
+                  {message.pet_name
+                    ? `Pet Name: ${message.pet_name}`
+                    : "Message from Vet"}
                 </div>
                 <div className="message-preview">
-                  {truncateText(message.note || message.content || message.body || message.message || message.text || 'No content')}
+                  {truncateText(
+                    message.note ||
+                      message.content ||
+                      message.body ||
+                      message.message ||
+                      message.text ||
+                      "No content"
+                  )}
                 </div>
               </div>
             );
@@ -129,4 +156,4 @@ const Messages = () => {
   );
 };
 
-export default Messages; 
+export default Messages;
