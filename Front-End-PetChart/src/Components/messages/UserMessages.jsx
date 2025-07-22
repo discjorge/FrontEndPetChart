@@ -15,7 +15,7 @@ export default function UserMessages() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await fetch("/messages/user", {
+        const res = await fetch("/messages/user/thread", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

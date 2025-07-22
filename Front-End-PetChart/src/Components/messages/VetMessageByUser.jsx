@@ -17,7 +17,7 @@ export default function VetMessageByUser() {
   useEffect(() => {
     async function fetchMessages() {
       try {
-        const res = await fetch(`/messages/vet/user/${userID}`, {
+        const res = await fetch(`/messages/vet/thread/${userID}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

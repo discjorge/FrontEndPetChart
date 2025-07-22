@@ -11,7 +11,6 @@ const Messages = () => {
   useEffect(() => {
     if (user && token) {
       fetchMessages();
-    } else {
     }
   }, [user, token]);
 
@@ -40,9 +39,9 @@ const Messages = () => {
 
         if (
           response.status === 404 &&
-          (errorData.message?.includes("no messages") ||
-            errorData.includes("no messages") ||
-            errorData.message?.includes("You have no messages yet"))
+          (errorData.message?.toLowerCase().includes("no messages") ||
+            (typeof errorData === "string" &&
+              errorData.toLowerCase().includes("no messages")))
         ) {
           console.log(
             "Messages component - No messages found, setting empty array"
@@ -82,7 +81,7 @@ const Messages = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleString("en-US", {
       month: "short",
       day: "numeric",
       hour: "2-digit",
@@ -91,6 +90,7 @@ const Messages = () => {
   };
 
   const truncateText = (text, maxLength = 100) => {
+    if (!text) return "No content";
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + "...";
   };
@@ -104,36 +104,28 @@ const Messages = () => {
         <p className="messages-error">{error}</p>
       ) : messages.length > 0 ? (
         <div className="messages-list">
-          {messages.slice(0, 5).map((message, index) => {
-            console.log("Messages component - Rendering message:", message);
+          {messages.slice(0, 5).map((message) => {
+            const senderName =
+              user.userType === "veterinarian"
+                ? message.user_name || `User ${message.user_id}`
+                : "Dr." && message.vet_last_name
+                ? `Dr. ${message.vet_last_name}`
+                : `Vet ${message.vet_id}`;
+
             return (
-              <div key={index} className="message-item">
+              <div key={message.id} className="message-item">
                 <div className="message-header">
-                  <span className="message-sender">
-                    {message.owner_name ||
-                      `${message.first_name || ""} ${
-                        message.last_name || ""
-                      }`.trim() ||
-                      message.senderName ||
-                      message.from ||
-                      message.sender ||
-                      message.userName ||
-                      `User ${message.user_id}`}
-                  </span>
+                  <span className="message-sender">{senderName}</span>
                   <span className="message-date">
-                    {formatDate(
-                      message.created_at ||
-                        message.createdAt ||
-                        message.date ||
-                        message.timestamp ||
-                        message.sentAt
-                    )}
+                    {formatDate(message.created_at)}
                   </span>
                 </div>
                 <div className="message-subject">
                   {message.pet_name
                     ? `Pet Name: ${message.pet_name}`
-                    : "Message from Vet"}
+                    : message.sender === "vet"
+                    ? "Vet:"
+                    : "You:"}
                 </div>
                 <div className="message-preview">
                   {truncateText(
@@ -141,8 +133,7 @@ const Messages = () => {
                       message.content ||
                       message.body ||
                       message.message ||
-                      message.text ||
-                      "No content"
+                      message.text
                   )}
                 </div>
               </div>
